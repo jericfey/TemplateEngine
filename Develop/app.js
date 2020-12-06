@@ -160,6 +160,60 @@ function addEngineer() {
     });
 }
 
+function addIntern() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the Intern's name?",
+        name: "internName",
+        validate: function (answer) {
+          if (answer.length < 1) {
+            return console.log("A valid name is required.");
+          }
+          return true;
+        },
+      },
+      {
+        type: "input",
+        message: "What is the Intern's id?",
+        name: "internId",
+        validate: function (answer) {
+          if (answer.length < 1) {
+            return console.log("A valid name is required.");
+          }
+          return true;
+        },
+      },
+      {
+        type: "input",
+        message: "What is the Intern's email?",
+        name: "internEmail",
+        validate: function (answer) {
+          if (answer.length < 1) {
+            return console.log("A valid email is required.");
+          }
+          return true;
+        },
+      },
+      {
+        type: "input",
+        message: "What is the Intern's School?",
+        name: "internSchool",
+      },
+    ])
+    .then((answers) => {
+      const { internName, internId, internEmail, internSchool } = answers;
+      const intern = new Intern(
+        internName,
+        internId,
+        internEmail,
+        internSchool
+      );
+      team.push(intern);
+      addTeamMember();
+    });
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
