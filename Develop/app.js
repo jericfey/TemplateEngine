@@ -215,6 +215,14 @@ function addIntern() {
     });
 }
 
+function buildTeam() {
+  //   console.log(team);
+
+  return fs.writeFileSync(outputPath, render(team));
+  console.log("Team page successfully built. ");
+}
+
+start();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
