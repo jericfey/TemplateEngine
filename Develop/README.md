@@ -32,7 +32,7 @@ _Instructions and examples of how to use:_
 
 > node app.js
 
-![TemplateEngine Screenshot](./Screenhot.jpg)
+![TemplateEngine Screenshot](./assets/Screenshot.jpg)
 
 A manager could use this app to build their team's contact web page
 
