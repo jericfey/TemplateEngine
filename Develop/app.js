@@ -10,9 +10,106 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const team = [];
 
+function start() {
+ inquirer.prompt([
+    {
+      type: "input",
+      message: "What is your manager's name?",
+      name: "managerName",
+      validate: function (answer) {
+        if (answer.length < 1) {
+          return console.log("A valid name is required.");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "What is your manager's id?",
+      name: "managerId",
+      validate: function (answer) {
+        if (answer.length < 1) {
+          return console.log("A valid name is required.");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "What is your manager's email?",
+      name: "managerEmail",
+      validate: function (answer) {
+        if (answer.length < 1) {
+          return console.log("A valid email is required.");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "What is your manager's office number?",
+      name: "managerOfficeNumber",
+    }
+  ])
+    .then(answers => {
+        const {
+            managerName, managerId, managerEmail, managerOfficeNumber
+        } = answers;
+        const manager = new Manager(managerName, managerId, managerEmail, managerOfficeNumber)
+        team.push(manager);
+       addTeamMember(); 
+    }) 
+
+}
+
+function addTeamMember() {
+    inquirer.prompt ([
+        {
+      type: "list",
+      message: "Which type of team member would you like to add?",
+      name: "type",
+      choices: [
+        "Engineer",
+        "Intern",
+        "I don't want to add any more team members",
+      ],
+       }
+    
+    ])
+    .then(answers => {
+        switch(answers.type){
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Intern":
+                addIntern();
+                break;
+            default:
+                buildTeam();
+            
+        }
+    })
+}
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const questions = () => {
+  
+    
+    {
+      type: "input",
+      message: "What is your engineers's name?",
+      name: "engineer",
+      validate: function (answer) {
+        if (answer.length < 1) {
+          return console.log("A valid email is required.");
+        }
+        return true;
+      },
+    },
+  ]);
+};
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
